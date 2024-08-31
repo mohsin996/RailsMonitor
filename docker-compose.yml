@@ -6,12 +6,12 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: dbpassword
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   postgres_exporter:
     image: prometheuscommunity/postgres-exporter
     environment:
-      DATA_SOURCE_NAME: "postgresql://postgres:dbpassword@db:5432/hello_world_development?sslmode=disable"
+      DATA_SOURCE_NAME: "postgresql://postgres:dbpassword@db:5432/rails_monitor_development?sslmode=disable"
     ports:
       - "9187:9187"
     depends_on:
@@ -37,10 +37,11 @@ services:
       - ".:/myapp"
     ports:
       - "3000:3000"
+    environment:
+      - SECRET_KEY_BASE=dc23501ce6bf6497dd8b01cfbedaa35df7ef885bea64dd205cf2eaf9047beda34ae81337bbdf2b84d3fa74f8300aa8e59bfb220de237aca939c6a8c5401911d6
     depends_on:
       - db
       - redis
-      - prometheus_exporter
 
   prometheus_exporter:
     build: .
@@ -62,8 +63,7 @@ services:
     ports:
       - "3001:3000"
     volumes:
-    - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
 volumes:
-  db_data:
-  grafana_data:
-
+  postgres_data:
