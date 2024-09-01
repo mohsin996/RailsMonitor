@@ -11,7 +11,7 @@ services:
   postgres_exporter:
     image: prometheuscommunity/postgres-exporter
     environment:
-      DATA_SOURCE_NAME: "postgresql://postgres:dbpassword@db:5432/rails_monitor_development?sslmode=disable"
+      DATA_SOURCE_NAME: "postgresql://postgres:dbpassword@db:5432/rails_monitor_production?sslmode=disable"
     ports:
       - "9187:9187"
     depends_on:
@@ -31,7 +31,7 @@ services:
 
   web:
     build: .
-    command: bash -c "bin/rails db:create && bin/rails db:migrate && bundle exec rails s -b '0.0.0.0'"
+    command: bash -c "bundle exec rails s -b '0.0.0.0'"
 
     volumes:
       - ".:/myapp"

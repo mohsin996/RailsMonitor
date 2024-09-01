@@ -70,3 +70,28 @@ yarn-debug.log*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore Terraform files
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+
+# Ignore .terraform.lock.hcl file
+.terraform.lock.hcl
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore crash log files
+crash.log
+
+# Ignore .tfplan files
+*.tfplan
+
+# Ignore .terraformrc and terraform.rc files
+.terraformrc
+terraform.rc
