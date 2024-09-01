@@ -67,7 +67,7 @@ Here's a quick look at the key files and directories in the repository:
 - **prometheus.rb** - Configures the Rails Prometheus Exporter.
 - **Grafana** -   Contains Grafana dashboards and datasource configurations.
 - **prometheus.yml** - Defines Prometheus scrape configurations for the services.
-- **terraform** Contains Terraform configuration files and provisioning scripts.
+- **terraform** Contains Terraform configuration files and provisioning scripts. (If there is a requiremnet for a VM)
   - **main.tf**: Terraform configuration file used for provisioning infrastructure resources. It includes:
     - **Resource Group (RG)**: A container that holds related resources for the application.
     - **Virtual Network (VNet)**: Defines the network infrastructure.
