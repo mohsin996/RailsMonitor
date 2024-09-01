@@ -60,7 +60,6 @@ Here's a quick look at the key files and directories in the repository:
         │   ├── main.tf
         │   ├── provision.sh
         │   └── provision.sh.b64
-        │   └── provision.sh.b64
 ```
 - **docker-compose.yml** - Orchestrates the application services: PostgreSQL, PostgreSQL Exporter, Redis, Redis Exporter, Rails Web App, Prometheus, and Grafana.
 - **Dockerfile** - Builds a production-grade Rails application image.
