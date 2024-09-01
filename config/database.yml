@@ -21,6 +21,7 @@ default: &default
   username: postgres
   password: dbpassword
   host: db
+  port: 5432
 
 development:
   <<: *default
@@ -83,5 +84,4 @@ test:
 production:
   <<: *default
   database: rails_monitor_production
-  username: rails_monitor
-  password: <%= ENV["RAILS_MONITOR_DATABASE_PASSWORD"] %>
+
