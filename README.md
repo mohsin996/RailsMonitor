@@ -56,6 +56,11 @@ Here's a quick look at the key files and directories in the repository:
         │           └── datasource.yml
         ├── prometheus.yml
         ├── setup.sh
+        ├── terraform
+        │   ├── main.tf
+        │   ├── provision.sh
+        │   └── provision.sh.b64
+        │   └── provision.sh.b64
 ```
 - **docker-compose.yml** - Orchestrates the application services: PostgreSQL, PostgreSQL Exporter, Redis, Redis Exporter, Rails Web App, Prometheus, and Grafana.
 - **Dockerfile** - Builds a production-grade Rails application image.
@@ -63,6 +68,25 @@ Here's a quick look at the key files and directories in the repository:
 - **prometheus.rb** - Configures the Rails Prometheus Exporter.
 - **Grafana** -   Contains Grafana dashboards and datasource configurations.
 - **prometheus.yml** - Defines Prometheus scrape configurations for the services.
+- **terraform** Contains Terraform configuration files and provisioning scripts.
+  - **main.tf**: Terraform configuration file used for provisioning infrastructure resources. This file defines the resources, including their types and properties, required for deploying the RailsMonitor application.
+  - **provision.sh**: Shell script used for provisioning infrastructure. This script contains commands to set up necessary infrastructure components such as networking and compute resources.
+  - **provision.sh.b64**: Base64 encoded version of `provision.sh` for secure handling. This encoded file can be decoded and executed as part of the provisioning process to ensure secure handling of sensitive information.
+
+- **terraform** Contains Terraform configuration files and provisioning scripts.
+  - **main.tf**: Terraform configuration file used for provisioning infrastructure resources. It includes:
+    - **Resource Group (RG)**: A container that holds related resources for the application.
+    - **Virtual Network (VNet)**: Defines the network infrastructure.
+    - **Subnet**: Specifies a subnet within the VNet.
+    - **Network Interface Card (NIC)**: Provides network connectivity for the VM.
+    - **Ubuntu VM**: Virtual Machine running Ubuntu, where the RailsMonitor application will be deployed.
+    - **Public IP**: Allows external access to the VM.
+    - **Network Security Group (NSG)**: Controls access to the VM, permitting traffic to the application, Grafana, and Prometheus.
+  - **provision.sh**: Shell script used for bootstrapping the server. It performs the following actions:
+    - Clones the repository from GitHub.
+    - Runs the setup script to initialize and configure the application.
+  - **provision.sh.b64**: Base64 encoded version of `provision.sh` for secure handling. This encoded file can be decoded and executed as part of the provisioning process to ensure sensitive information is managed securely.
+
 
 ## Metrics Explanation and Monitoring
 
