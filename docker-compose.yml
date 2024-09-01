@@ -7,6 +7,11 @@ services:
       POSTGRES_PASSWORD: dbpassword
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres_exporter:
     image: prometheuscommunity/postgres-exporter
@@ -31,8 +36,8 @@ services:
 
   web:
     build: .
-    command: bash -c "bundle exec rails s -b '0.0.0.0'"
-
+    command: bash -c "./bin/rails server -b '0.0.0.0'"
+    #command: bash -c "bin/rails db:create && bin/rails db:migrate && bundle exec rails s -b '0.0.0.0'"
     volumes:
       - ".:/myapp"
     ports:
@@ -40,8 +45,10 @@ services:
     environment:
       - SECRET_KEY_BASE=dc23501ce6bf6497dd8b01cfbedaa35df7ef885bea64dd205cf2eaf9047beda34ae81337bbdf2b84d3fa74f8300aa8e59bfb220de237aca939c6a8c5401911d6
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
 
   prometheus_exporter:
     build: .
