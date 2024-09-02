@@ -1,8 +1,6 @@
 # RailsMonitor
 RailsMonitor is a "Hello World" Rails application connected to PostgreSQL and Redis, with integrated monitoring solutions. This setup ensures comprehensive tracking of the application's performance, reliability, and resource usage.
 
-<img src="images/hello_world.png" alt="Architecture Diagram" width="600" style="border: 2px solid black;"/>
-
 ## Prerequisites
 - Ubuntu Os (18.04+)
 - Docker (version 27.2.0+)
