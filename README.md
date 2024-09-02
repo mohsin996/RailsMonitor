@@ -1,8 +1,7 @@
 # RailsMonitor
 RailsMonitor is a "Hello World" Rails application connected to PostgreSQL and Redis, with integrated monitoring solutions. This setup ensures comprehensive tracking of the application's performance, reliability, and resource usage.
 
-![Hello_World!](images/hello_world.png)
-<!-- <img src="images/hello_world.png" alt="Architecture Diagram" width="600"/> -->
+<img src="images/hello_world.png" alt="Architecture Diagram" width="600" style="border: 2px solid black;"/>
 
 ## Prerequisites
 - Ubuntu Os (18.04+)
@@ -133,10 +132,12 @@ The Prometheus setup in RailsMonitor is configured to scrape metrics from the Ra
 ![Alerting](images/Alerting.png)
 
 **Example Grafana Dashboards:**
-<!-- <img src="images/hello_world.png" alt="Architecture Diagram" width="600"/> -->
-![grafana_dashboard](images/grafana_dashboard.png)
-![grafana_postgres_dashboard](images/grafana_postgres_dashboard.png)
-![grafana_rails_application_dashboard](images/grafana_rails_application_dashboard.png)
+
+- **Postgres dashboard:** Postgres dashboard was adapted from [this source](https://grafana.com/grafana/dashboards/9628-postgresql-database/)
+   ![grafana_postgres_dashboard](images/grafana_postgres_dashboard.png)
+
+- **Rails dashboard:** Created the dashboard using the Rails Application metrics.
+   ![grafana_rails_application_dashboard](images/grafana_rails_application_dashboard.png)
 
 By monitoring these metrics, RailsMonitor ensures that your application remains performant, reliable, and resource-efficient. This proactive approach helps in maintaining the health of your services and addressing issues before they impact users.
 
