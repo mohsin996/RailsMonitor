@@ -80,7 +80,7 @@ Here's a quick look at the key files and directories in the repository:
 - **Prometheus** -   Contains Prometheus and Alerting configurations
 - **prometheus.yml** - Defines Prometheus scrape configurations for the services.
 - **alerts.yml** - Defines Prometheus Alert configurations for the services.
-- **terraform** Contains Terraform configuration files and provisioning scripts. (If there is a requiremnet for a VM)
+- **terraform** Contains Terraform configuration files and provisioning scripts. (If there is a requirement for a VM)
   - **main.tf**: Terraform configuration file used for provisioning infrastructure resources. It includes:
     - **Resource Group (RG)**: A container that holds related resources for the application.
     - **Virtual Network (VNet)**: Defines the network infrastructure.
