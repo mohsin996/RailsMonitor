@@ -1,5 +1,6 @@
 version: '3'
 services:
+  #postgres-database
   db:
     image: postgres
     environment:
@@ -12,7 +13,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
   postgres_exporter:
     image: prometheuscommunity/postgres-exporter
     environment:
@@ -20,8 +20,10 @@ services:
     ports:
       - "9187:9187"
     depends_on:
-    - db
+      db:
+        condition: service_healthy
 
+  #redis-database
   redis:
     image: redis
 
@@ -34,22 +36,23 @@ services:
     depends_on:
     - redis
 
+  #rails_application
   web:
     build: .
-    command: bash -c "./bin/rails server -b '0.0.0.0'"
+    command: ./bin/rails server
     #command: bash -c "bin/rails db:create && bin/rails db:migrate && bundle exec rails s -b '0.0.0.0'"
     volumes:
       - ".:/myapp"
     ports:
       - "3000:3000"
     environment:
+      - RAILS_ENV=production
       - SECRET_KEY_BASE=dc23501ce6bf6497dd8b01cfbedaa35df7ef885bea64dd205cf2eaf9047beda34ae81337bbdf2b84d3fa74f8300aa8e59bfb220de237aca939c6a8c5401911d6
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_started
-
   prometheus_exporter:
     build: .
     command: bundle exec prometheus_exporter -b 0.0.0.0 -p 9394
@@ -57,14 +60,16 @@ services:
       - ".:/myapp"
     ports:
       - "9394:9394"
+    depends_on:
+    - web
 
+  #Prometheus_and_Grafana
   prometheus:
     image: prom/prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
-
   grafana:
     image: grafana/grafana
     ports:
