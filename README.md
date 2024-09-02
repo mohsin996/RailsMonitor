@@ -1,6 +1,8 @@
 # RailsMonitor
 RailsMonitor is a "Hello World" Rails application connected to PostgreSQL and Redis, with integrated monitoring solutions. This setup ensures comprehensive tracking of the application's performance, reliability, and resource usage.
 
+![Hello_World!](images/hello_world.png)
+<!-- <img src="images/hello_world.png" alt="Architecture Diagram" width="600"/> -->
 
 ## Prerequisites
 - Ubuntu Os (18.04+)
@@ -118,6 +120,7 @@ Here's a quick look at the key files and directories in the repository:
 - **Connected Clients:** Alerts if the number of connected clients exceeds 90% of the maximum allowed connections.
 - **Cache Hits/Misses:** Monitors cache efficiency with alerts if the hit ratio falls below 90%.
 
+
 ### Monitoring and Alerting
 
 The Prometheus setup in RailsMonitor is configured to scrape metrics from the Rails application, PostgreSQL, and Redis services. These metrics are visualized in Grafana dashboards and can trigger alerts to maintain application health and reliability.
@@ -126,6 +129,14 @@ The Prometheus setup in RailsMonitor is configured to scrape metrics from the Ra
 - **Rails Application:** Alerts for memory usage exceeding 75%, HTTP request duration breaches,HTTP 500 requests and other critical performance metrics.
 - **PostgreSQL:** Alerts for CPU usage exceeding 80%, low cache hit ratio, Stat Activity Count, and other essential performance indicators.
 - **Redis:** Alerts for memory usage exceeding 80%, high number of connected clients, and cache efficiency issues.
+
+![Alerting](images/Alerting.png)
+
+**Example Grafana Dashboards:**
+<!-- <img src="images/hello_world.png" alt="Architecture Diagram" width="600"/> -->
+![grafana_dashboard](images/grafana_dashboard.png)
+![grafana_postgres_dashboard](images/grafana_postgres_dashboard.png)
+![grafana_rails_application_dashboard](images/grafana_rails_application_dashboard.png)
 
 By monitoring these metrics, RailsMonitor ensures that your application remains performant, reliable, and resource-efficient. This proactive approach helps in maintaining the health of your services and addressing issues before they impact users.
 
