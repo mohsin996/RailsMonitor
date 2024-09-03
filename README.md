@@ -139,3 +139,11 @@ The Prometheus setup in RailsMonitor is configured to scrape metrics from the Ra
 
 By monitoring these metrics, RailsMonitor ensures that your application remains performant, reliable, and resource-efficient. This proactive approach helps in maintaining the health of your services and addressing issues before they impact users.
 
+## Dev Note
+If you fork this repo for your own purposes to learn and experiment, be sure to run below commands every time you add a new gem to update the Gemfile.lock file before running docker-compose up --build -d
+   ```bash
+   cd RailsMonitor
+   sudo apt install ruby-bundler #Install bundler 
+   bundle config set --local path 'vendor/bundle' #To prevent system's /var/lib/gems/3.0.0 directory
+   bundle install
+   ```

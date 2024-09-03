@@ -12,8 +12,8 @@ rerun.txt
 pickle-email-*.html
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
+*/log/*
+*/tmp/*
 !/log/.keep
 !/tmp/.keep
 
@@ -30,8 +30,8 @@ config/master.key
 .env*.local
 
 ## Environment normalization:
-/.bundle
-/vendor/bundle
+*/.bundle
+*/vendor/bundle
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
